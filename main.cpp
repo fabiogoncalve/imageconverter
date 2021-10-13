@@ -1,30 +1,33 @@
 #include <iostream>
 #include <iomanip>
+# include <map>
 
 class ArgumentParser
 {
 public:
-    void RegisterFlag(const std::string flag)
+    void RegisterFlag(const std::string& flag)
     {
+         if(!flag.empty())
+        {
+            m_Flags[flag]=false;
+
+        }
+        
+
     }
     bool GetFlag(const std::string &flag)
     {
-        if(flag==RegisterFlag(flag))
-        {
-            return true;
-
-        };
-        else
-        {
-
-            retune false;
-        };
+       return false;
     }
 
     void Parse(int argc, char *argv[])
     {
     }
+
+private:
+    std::map<std::string,bool> m_Flags;// dicionário que recebe como key a flag em string , e um booleano
 };
+
 int main(int argc, char *argv[])
 
 /*argumento passados pela linha de comandos
