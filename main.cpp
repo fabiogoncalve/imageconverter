@@ -41,8 +41,43 @@ public:
 
                     if(arg[0] =='-' && arg[1] =='-') // 2 primeiros elementos são --
                     {
-                        
+                        //Example:--rename
+                        arg=arg.substr(2);//subtrai os dois primeiros caracteres. Retira o --
+                        //Example:rename
+                        if (arg.find_first_of('=') != std::string::npos) // função para encontrar a primeira ocorrencia de "=", e for diferente da pos 
+					    {
+						// é uma opção
+						const size_t equalsignPos = arg.find('='); // Encontrar a posição onde o caratere "=" está na string ARG
 
+						if (equalsignPos != std::string::npos) // verifica se existe o "=" na opcao
+						{/*
+							// dividir a opcão em chave e valor
+							std::string optioname = arg.substr(0, equalsignPos); // vai separar a string do inicio até ao igual
+							std::string optionValue = arg.substr(equalsignPos + 1);// vai buscar o caratere após o sinal igual
+
+							auto optionIt = m_opcao.find(optioname);
+
+							if (optionIt != std::end(m_opcao))
+							{
+								//achou uma opcao registada
+								optionIt->second = optionValue;
+							}*/
+						}
+					}
+
+					else
+					{
+						// é uma flag	
+						auto flagit = m_flags.find(arg); // encontrar o argumento
+
+						if (flagit != end(m_flags))
+						{ 
+							//achei uma flag resgistada marcar como verdadeiro
+							flagit->second = true;
+						}
+					}
+                        
+                        
                     }
 
                 }         
